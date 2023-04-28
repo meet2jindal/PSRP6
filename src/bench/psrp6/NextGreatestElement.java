@@ -22,12 +22,7 @@ public class NextGreatestElement {
                 if (next < element) {
                     queue.add(next);
                 } else {
-                    while (!queue.isEmpty() && next > element) {
-                        System.out.println(element + "->" + next);
-                        queue.remove();
-                        if (!queue.isEmpty())
-                            element = queue.peek();
-                    }
+                    processElement(queue, next, element);
                     queue.add(next);
                 }
             }
@@ -36,6 +31,15 @@ public class NextGreatestElement {
         }
         while (!queue.isEmpty()){
             System.out.println(queue.remove() + "->" + -1);
+        }
+    }
+
+    private static void processElement(Queue<Integer> queue, int next, int element){
+        while (!queue.isEmpty() && next > element) {
+            System.out.println(element + "->" + next);
+            queue.remove();
+            if (!queue.isEmpty())
+                element = queue.peek();
         }
     }
 }
